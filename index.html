@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>POS_System</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="icon" type="imge/x-icon" href="Image/Hot%20Chili%20logo%20design%20template.jpg">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -14,6 +14,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&display=swap" rel="stylesheet">
     <style>
@@ -37,7 +38,7 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <!--<div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="nav nav-underline">
                 <li class="nav-item">
                     <a class="nav-link" href="Dashboard.html">Home</a>
@@ -50,6 +51,30 @@
                 </li>
                 <li class="nav-item">
                     <a id="ORDERS" class="nav-link" href="index.html#OrderSEC">Order</a>
+                </li>
+            </ul>
+        </div>-->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="nav nav-underline">
+                <li class="nav-item">
+                    <a ID="HOME" class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a id="CUSTOMERS" class="nav-link" href="index.html#CustomerSEC">Customer</a>
+                </li>
+                <li class="nav-item">
+                    <a id="ITEMS" class="nav-link" href="index.html#ITEMS">Item</a>
+                </li>
+
+                <!-- Order Dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="orderDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Order
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="orderDropdown">
+                        <li><a id="ORDERS" class="dropdown-item" href="index.html#OrderSEC">Order</a></li>
+                        <li><a id="ORDER_HISTORY" class="dropdown-item" href="index.html#OrderHistorySec">Order History</a></li>
+                    </ul>
                 </li>
             </ul>
         </div>
@@ -318,37 +343,108 @@
 </div>
 
 
+<!--Order History-->
+
+<div id="OrderHistorySec" class="container mt-5">
+    <h2 class="text-center mb-4">Order History</h2>
+
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h5>Your Orders</h5>
+        </div>
+
+        <div class="card-body">
+            <table class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Customer ID</th>
+                    <th>Date</th>
+                    <th>Items</th>
+                    <th>Total Price</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>#1021</td>
+                    <td>CUST-001</td>
+                    <td>2023-10-15</td>
+                    <td>3</td>
+                    <td>$150.00</td>
+                </tr>
+                <tr>
+                    <td>#1022</td>
+                    <td>CUST-002</td>
+                    <td>2023-10-20</td>
+                    <td>5</td>
+                    <td>$250.00</td>
+                </tr>
+                <tr>
+                    <td>#1023</td>
+                    <td>CUST-003</td>
+                    <td>2023-10-25</td>
+                    <td>2</td>
+                    <td>$75.00</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Add Bootstrap JS for dropdown functionality -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
 
     let CUS = document.getElementById("CUSTOMERS");
     let ITM = document.getElementById("ITEMS");
     let ORD= document.getElementById("ORDERS");
+    let ORD_HIS = document.getElementById("ORDER_HISTORY");
+    let HOME = document.getElementById("HOME");
 
     let customer_Section = document.getElementById("CustomerSEC");
     let order_section = document.getElementById("OrderSEC");
     let item_section = document.getElementById("ItemSEC");
+    let orderHistory_section = document.getElementById("OrderHistorySec");
 
     customer_Section.style.display = "none";
     order_section.style.display = "none";
     item_section.style.display = "none";
+    orderHistory_section.style.display = "none";
 
+    HOME.addEventListener('click', function () {
+        customer_Section.style.display = "none";
+        order_section.style.display = "none";
+        item_section.style.display = "none";
+        orderHistory_section.style.display = "none";
+    });
     CUS.addEventListener('click', function () {
         customer_Section.style.display = "block";
         order_section.style.display = "none";
         item_section.style.display = "none";
+        orderHistory_section.style.display = "none";
     });
     ITM.addEventListener('click', function () {
         customer_Section.style.display = "none";
         order_section.style.display = "none";
         item_section.style.display = "block";
+        orderHistory_section.style.display = "none";
     });
     ORD.addEventListener('click', function () {
         customer_Section.style.display = "none";
         order_section.style.display = "block";
         item_section.style.display = "none";
+        orderHistory_section.style.display = "none";
 
     });
+    ORD_HIS.addEventListener('click', function () {
+        customer_Section.style.display = "none";
+        order_section.style.display = "none";
+        item_section.style.display = "none";
+        orderHistory_section.style.display = "block";
+    })
 </script>
 </body>
 </html>
