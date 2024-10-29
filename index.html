@@ -22,6 +22,14 @@
             background: rgb(238,174,202);
             background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
         }
+         .carousel-item {
+             height: 92vh; /* Full viewport height */
+         }
+        .carousel-item img {
+            width: 100%;
+            height: 92vh;
+            object-fit: cover; /* Ensures images maintain aspect ratio */
+        }
     </style>
 </head>
 <body>
@@ -38,26 +46,10 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <!--<div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="nav nav-underline">
-                <li class="nav-item">
-                    <a class="nav-link" href="Dashboard.html">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a id="CUSTOMERS" class="nav-link" href="index.html#CustomerSEC">Customer</a>
-                </li>
-                <li class="nav-item">
-                    <a id="ITEMS" class="nav-link" href="index.html#ITEMS">Item</a>
-                </li>
-                <li class="nav-item">
-                    <a id="ORDERS" class="nav-link" href="index.html#OrderSEC">Order</a>
-                </li>
-            </ul>
-        </div>-->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="nav nav-underline">
                 <li class="nav-item">
-                    <a ID="HOME" class="nav-link" href="index.html">Home</a>
+                    <a ID="HOME" class="nav-link" href="index.html#coffeeCarousel">Home</a>
                 </li>
                 <li class="nav-item">
                     <a id="CUSTOMERS" class="nav-link" href="index.html#CustomerSEC">Customer</a>
@@ -80,6 +72,66 @@
         </div>
     </div>
 </nav>
+
+<!--Home-->
+<div id="coffeeCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <!-- Coffee Beans -->
+        <div class="carousel-item active">
+            <img src="assest/images/pexels-juanpphotoandvideo-894695.jpg" alt="Coffee Beans">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Quality Coffee Beans</h5>
+                <p>Experience the aroma and taste of freshly roasted coffee beans.</p>
+            </div>
+        </div>
+
+        <!-- Barista -->
+        <div class="carousel-item">
+            <img src="assest/images/pexels-n-voitkevich-5792323.jpg" alt="Barista">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Expert Baristas</h5>
+                <p>Our baristas craft each cup with care, creating perfect blends.</p>
+            </div>
+        </div>
+
+        <!-- Cozy Coffee Shop Ambiance -->
+        <div class="carousel-item">
+            <img src="assest/images/pexels-apgpotr-683039.jpg" alt="Cozy Ambiance">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Cozy Ambiance</h5>
+                <p>Relax in our inviting environment, perfect for unwinding.</p>
+            </div>
+        </div>
+
+        <!-- New Latte Art Image -->
+        <div class="carousel-item">
+            <img src="assest/images/pexels-chevanon-302899.jpg" alt="New Latte Art">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Beautiful Latte Art</h5>
+                <p>Enjoy our artistic coffee creations made by talented baristas.</p>
+            </div>
+        </div>
+
+        <!-- People Enjoying Coffee -->
+        <div class="carousel-item">
+            <img src="assest/images/pexels-valeriiamiller-3361170.jpg" alt="People Enjoying Coffee">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Perfect for Friends</h5>
+                <p>Gather with friends over a cup of our expertly brewed coffee.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Carousel Controls -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#coffeeCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#coffeeCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
 
 <!-- Customer -->
 <div id="CustomerSEC" class="container mt-5">
@@ -408,42 +460,50 @@
     let order_section = document.getElementById("OrderSEC");
     let item_section = document.getElementById("ItemSEC");
     let orderHistory_section = document.getElementById("OrderHistorySec");
+    let home_section = document.getElementById("coffeeCarousel");
 
     customer_Section.style.display = "none";
     order_section.style.display = "none";
     item_section.style.display = "none";
     orderHistory_section.style.display = "none";
+    home_section.style.display = "none";
+
 
     HOME.addEventListener('click', function () {
         customer_Section.style.display = "none";
         order_section.style.display = "none";
         item_section.style.display = "none";
         orderHistory_section.style.display = "none";
-    });
+        home_section.style.display = "block";
+    })
+
     CUS.addEventListener('click', function () {
         customer_Section.style.display = "block";
         order_section.style.display = "none";
         item_section.style.display = "none";
         orderHistory_section.style.display = "none";
+        home_section.style.display = "none";
     });
     ITM.addEventListener('click', function () {
         customer_Section.style.display = "none";
         order_section.style.display = "none";
         item_section.style.display = "block";
         orderHistory_section.style.display = "none";
+        home_section.style.display = "none";
     });
     ORD.addEventListener('click', function () {
         customer_Section.style.display = "none";
         order_section.style.display = "block";
         item_section.style.display = "none";
         orderHistory_section.style.display = "none";
-
+        home_section.style.display = "none";
     });
     ORD_HIS.addEventListener('click', function () {
         customer_Section.style.display = "none";
         order_section.style.display = "none";
         item_section.style.display = "none";
         orderHistory_section.style.display = "block";
+        home_section.style.display = "none";
     })
 </script>
 </body>
