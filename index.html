@@ -8,8 +8,6 @@
     <link rel="icon" type="imge/x-icon" href="Image/Hot%20Chili%20logo%20design%20template.jpg">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="Style/normalize.css">
-    <link rel="stylesheet" href="Style/Order.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -57,16 +55,11 @@
                 <li class="nav-item">
                     <a id="ITEMS" class="nav-link" href="index.html#ITEMS">Item</a>
                 </li>
-
-                <!-- Order Dropdown -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="orderDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Order
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="orderDropdown">
-                        <li><a id="ORDERS" class="dropdown-item" href="index.html#OrderSEC">Order</a></li>
-                        <li><a id="ORDER_HISTORY" class="dropdown-item" href="index.html#OrderHistorySec">Order History</a></li>
-                    </ul>
+                <li class="nav-item">
+                    <a id="ORDERS" class="nav-link" href="index.html#OrderSEC">Order</a>
+                </li>
+                <li class="nav-item">
+                    <a id="ORDER_HISTORY" class="nav-link" href="index.html#OrderHistorySec">Order History</a>
                 </li>
             </ul>
         </div>
@@ -141,12 +134,12 @@
             <form>
                 <div class="row">
                     <div class="col-md-4 mb-3">
-                        <label for="customerID" class="form-label">Customer ID</label>
-                        <input type="text" class="form-control" id="customerID" placeholder="Enter Customer ID">
-                    </div>
-                    <div class="col-md-4 mb-3">
                         <label for="customerName" class="form-label">Customer Name</label>
                         <input type="text" class="form-control" id="customerName" placeholder="Enter Customer Name">
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="customerEmail" class="form-label">Customer Email</label>
+                        <input type="email" class="form-control" id="customerEmail" placeholder="Enter Customer Email">
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="customerAddress" class="form-label">Address</label>
@@ -160,16 +153,16 @@
                 <div class="col-lg-3">
                     <div class="btn-group-vertical w-100">
                         <form class="d-flex" role="search">
-                            <input class="form-control me-2" type="search" placeholder="Search by ID or Name" aria-label="Search">
-                            <button class="btn btn-success" type="submit">Search</button>
+                            <input id="customerPhoneSearch" class="form-control me-2" type="search" placeholder="Search by Phone Number" aria-label="Search">
+                            <button id="customerSearch" class="btn btn-success" type="button">Search</button>
                         </form>
                     </div>
                 </div>
                 <br>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button class="btn btn-primary mb-2" type="button">Save Customer</button>
-                    <button class="btn btn-danger mb-2" type="button">Delete Customer</button>
-                    <button class="btn btn-warning mb-2" type="button">Update Customer</button>
+                    <button id="saveCustomer" class="btn btn-primary mb-2" type="button">Save Customer</button>
+                    <button id="deleteCustomer" class="btn btn-danger mb-2" type="button">Delete Customer</button>
+                    <button id="updateCustomer" class="btn btn-warning mb-2" type="button">Update Customer</button>
                 </div>
             </form>
         </div>
@@ -182,24 +175,13 @@
                 <tr>
                     <th>Customer ID</th>
                     <th>Customer Name</th>
+                    <th>Customer Email</th>
                     <th>Address</th>
                     <th>Phone Number</th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr>
-                    <td>001</td>
-                    <td>Nipun Prabushitha</td>
-                    <td>Gampaha</td>
-                    <td>+94786054430</td>
-                </tr>
-                <tr>
-                    <td>002</td>
-                    <td>Gihan</td>
-                    <td>Wadduwa</td>
-                    <td>+94765747319</td>
-                </tr>
-
+                <tbody id="customerTable">
+                <!---->
                 </tbody>
             </table>
         </div>
@@ -240,16 +222,16 @@
                 </div>
                 <br>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button class="btn btn-primary mb-2" type="button">Save Item</button>
-                    <button class="btn btn-danger mb-2" type="button">Delete Item</button>
-                    <button class="btn btn-warning mb-2" type="button">Update Item</button>
+                    <button id="saveItem" class="btn btn-primary mb-2" type="button">Save Item</button>
+                    <button id="deleteItem" class="btn btn-danger mb-2" type="button">Delete Item</button>
+                    <button id="updateItem" class="btn btn-warning mb-2" type="button">Update Item</button>
                 </div>
             </form>
         </div>
 
-        <!-- Customer List Table -->
+        <!-- Item List Table -->
         <div class="card p-3">
-            <h4 class="card-title">Customers</h4>
+            <h4 class="card-title">Items</h4>
             <table class="table table-bordered table-striped">
                 <thead class="table-dark">
                 <tr>
@@ -259,20 +241,7 @@
                     <th>Quantity</th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr>
-                    <td>001</td>
-                    <td>Coffee</td>
-                    <td>100.00</td>
-                    <td>25</td>
-                </tr>
-                <tr>
-                    <td>002</td>
-                    <td>Capachinno</td>
-                    <td>900.00</td>
-                    <td>25</td>
-                </tr>
-
+                <tbody id="itemTable">
                 </tbody>
             </table>
         </div>
@@ -446,8 +415,11 @@
 
 <!-- Add Bootstrap JS for dropdown functionality -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script type="module" src="controller/customerController.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="lib/jquery-3.7.1.min.js.js"></script>
+
 <script>
 
     let CUS = document.getElementById("CUSTOMERS");
