@@ -80,3 +80,49 @@ const clearItemForm = () => {
 }
 
 
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/*Item Update*/
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*item search*/
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+let currentItemId = null; // To keep track of the currently selected item
+
+$("#itemSearch").on("click", function (event) {
+    searchItemByName();
+    $("#itemSearchByName").val(''); // Clear the search input after searching
+});
+
+// Function to search for an item by name
+function searchItemByName() {
+
+    const searchName = document.getElementById("itemSearchByName").value;
+    const item = itemDB.find(it => it.itemName === searchName);
+
+    // Check if the customer was found
+    if (item) {
+        document.getElementById("itemName").value = item.itemName;
+        document.getElementById("unitPrice").value = item.unitPrice;
+        document.getElementById("itemQuantity").value = item.quantity;
+        currentItemId = item.itemId; // Set current item ID
+    } else {
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Customer Not Found!",
+            footer: '<a href="#">Enter Correct Customer Number</a>'
+        });
+    }
+}
+
+
+
