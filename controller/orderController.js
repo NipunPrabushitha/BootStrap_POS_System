@@ -1,5 +1,10 @@
 import {customerDB, orderDB} from "../db/database.js";
 import {itemDB} from "../db/database.js";
+import ItemModel from "../model/ItemModel.js";
+
+let orderTableArr = [];
+
+let itemDBClone = itemDB;
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 /*Customer Drop Down*/
@@ -129,5 +134,83 @@ $("#purchaseButton").on("click", function () {
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 /*Add Items to the table*/
 ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function updateOrderTable() {
+
+    let itemId = document.getElementById("itemSelect").value;
+    let itemName = document.getElementById("itemsName").value;
+    let price = parseFloat(document.getElementById("price").value);
+    let orderQty = parseInt(document.getElementById("orderQty").value);
+    let totalPrice = price * orderQty;
+
+    let QTY_Hand = parseInt(document.getElementById("qty").value);
+
+    if(isNaN(orderQty) || orderQty <= 0) {
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Item Quantity",
+            footer: '<a href="#">Fill the Item Quantity</a>'
+        });
+    }else{
+
+        orderTableArr.push([itemId, itemName,price, orderQty, totalPrice]);
+
+        $("#orderTable").empty();
+        orderTableArr.forEach(order => {
+            const row = `
+            <tr>
+                <td>${order[0]}</td>
+                <td>${order[1]}</td>
+                <td>${order[2]}</td>
+                <td>${order[3]}</td>
+                <td>${order[4]}</td>
+            </tr>
+        `;
+            $("#orderTable").append(row);
+        });
+    }
+}
+
+$("#addItemBtn").on("click", function () {
+    updateOrderTable();
+    clearItemSide();
+    calculateTotal();
+});
+
+function clearItemSide(){
+    document.getElementById("orderQty").value = "";
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*Calculate Total*/
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+function calculateTotal() {
+    let total = 0;
+    const table = document.getElementById("orderTable");
+
+    // Loop through each row except the header row
+    for (let i = 0; i < table.rows.length; i++) {
+        const totalCell = table.rows[i].cells[4]; // Assuming "Total" is in the 5th column (index 4)
+        const cellValue = parseFloat(totalCell.innerText || totalCell.textContent); // Parse as float for decimal values
+
+        if (!isNaN(cellValue)) {
+            total += cellValue; // Add to total if it's a valid number
+        }
+    }
+    document.querySelector("h4 > strong").textContent = total.toFixed(2);
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
