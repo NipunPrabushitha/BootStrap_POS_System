@@ -11,7 +11,6 @@ let selected_item_Index = null;
 
 
 $("#saveItems").on("click", function() {
-    console.log("awaaaaaa");
     let ItemName = $("#itemName").val();
     let Price = $("#unitPrice").val();
     let Quantity = $("#itemQuantity").val();
@@ -86,7 +85,30 @@ const clearItemForm = () => {
 /*Item Update*/
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+$("#updateItem").on("click",function (){
+    updateItem();
+})
+function updateItem() {
+    if (currentItemId != null) {
+        let ItemName = $("#itemName").val();
+        let Price = $("#unitPrice").val();
+        let Quantity = $("#itemQuantity").val();
 
+        const itemIndex = itemDB.findIndex(it => it.itemId === currentItemId);
+        if (itemIndex !== -1) {
+            let itemUpdate = new ItemModel(
+                currentItemId,
+                ItemName,
+                Price,
+                Quantity
+            );
+            itemDB[itemIndex] = itemUpdate;
+            itemTable();
+        }
+    } else {
+        alert("No item selected for update.");
+    }
+}
 
 
 
@@ -123,6 +145,10 @@ function searchItemByName() {
         });
     }
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 
 
 
