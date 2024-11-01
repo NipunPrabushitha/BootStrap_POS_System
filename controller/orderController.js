@@ -27,7 +27,6 @@ function populateCustomerDropdown() {
 
     // Loop through CustomerDB to create option elements
     customerDB.forEach(customer => {
-        console.log("Adding customer ID:", customer.id);
         const option = document.createElement("option");
         option.value = customer.id;
         option.textContent = customer.id;
@@ -126,9 +125,9 @@ function generateOrderId() {
 }
 
 let orderIDField = document.getElementById('orderID');
-$("#purchaseButton").on("click", function () {
+/*$("#purchaseButton").on("click", function () {
     orderIDField.value = generateOrderId();  // Set the generated ID in the input field
-});
+});*/
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -198,9 +197,44 @@ function calculateTotal() {
             total += cellValue; // Add to total if it's a valid number
         }
     }
-    document.querySelector("h4 > strong").textContent = total.toFixed(2);
+    document.querySelector("p.text-danger").textContent = `SubTotal: ${total.toFixed(2)}`;
+    /*document.querySelector("h4 > strong").textContent = total.toFixed(2);*/
 }
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*Cash And Discount*/
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function getSubTotalValue() {
+    const subTotalText = document.querySelector("p.text-danger").textContent;
+    // Extract the number from the text "SubTotal: 123.45"
+    const subTotal_value = parseFloat(subTotalText.replace("SubTotal: ", ""));
+    return subTotal_value;
+}
+
+// Example usage
+
+function calculateCashBalance(){
+    const currentSubTotal = getSubTotalValue();
+    let cash = document.getElementById("cash").value;
+    let discount = document.getElementById("discount").value;
+
+    if (isNaN(cash) || isNaN(discount) || isNaN(currentSubTotal)) {
+        alert("Please enter valid numbers");
+    }else {
+        let totalAmount = (currentSubTotal - discount);
+        let cashBalance = (cash - totalAmount);
+
+        console.log(cashBalance);
+        /*document.getElementById("balance").value = cashBalance.toFixed(2);*/
+        document.querySelector("h4 > strong").textContent = totalAmount.toFixed(2);
+        document.querySelector("h5 > strong").textContent = cashBalance.toFixed(2);
+    }
+}
+
+$("#purchaseButton").on("click", function (){
+    calculateCashBalance();
+});
 
 
 

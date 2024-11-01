@@ -312,8 +312,7 @@
         <!-- Total & Payment -->
         <div class="col-md-4">
             <div class="total-box border rounded p-3">
-                <h4>Total: <strong></strong></h4>
-
+                <p class="text-danger">SubTotal: </p>
                 <div class="mb-3">
                     <label for="cash" class="form-label">Cash:</label>
                     <input type="text" class="form-control" id="cash" >
@@ -325,8 +324,10 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="balance" class="form-label">Balance:</label>
-                    <input type="text" class="form-control" id="balance" >
+                    <h4 id="total">Total: <strong></strong></h4>
+                    <h5 id="balance">Balance: <strong></strong></h5>
+                    <!--<label for="balance" class="form-label">Balance:</label>
+                    <input type="text" class="form-control" id="balance" >-->
                 </div>
 
                 <button id="purchaseButton" class="btn btn-success w-100">Purchase</button>
